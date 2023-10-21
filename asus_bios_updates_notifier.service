@@ -1,0 +1,11 @@
+[Unit]
+Description=Asus BIOS Updates Notifier
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/share/asus-bios-updates-notifier/script.sh
+TimeoutSec=5
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
