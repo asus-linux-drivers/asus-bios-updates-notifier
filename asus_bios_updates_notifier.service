@@ -2,10 +2,14 @@
 Description=Asus BIOS Updates Notifier
 
 [Service]
-Type=oneshot
+Type=simple
+StandardOutput=append:$ERROR_LOG_FILE_PATH
+StandardError=append:$ERROR_LOG_FILE_PATH
 ExecStart=/bin/bash /usr/share/asus-bios-updates-notifier/script.sh
-TimeoutSec=5
+TimeoutSec=60
 Restart=on-failure
+Environment="BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH=$BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH"
+Environment="BIOS_IS_UPTODATE_SCRIPT_FILE_PATH=$BIOS_IS_UPTODATE_SCRIPT_FILE_PATH"
 
 [Install]
 WantedBy=default.target

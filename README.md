@@ -6,13 +6,14 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fasus-linux-drivers%2Fasus-bios-updates-notifier&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-Script whether is current BIOS version up-to-date may be run separately or every laptop start via provided systemctl service.
+Script check whether is current BIOS version up-to-date, may be run separately by own or every laptop start via provided systemctl service.
 
 If you find this project useful, do not forget to give it a [![GitHub stars](https://img.shields.io/github/stars/asus-linux-drivers/asus-bios-updates-notifier.svg?style=social&label=Star&maxAge=2592000)](https://github.com/asus-linux-drivers/asus-bios-updates-notifier/stargazers) People already did!
 
 ## Features
 
 - Notifier is installed for current user and does not run under `$ sudo`
+- Customizable scripts which by default show notification bubbles via `$ notify-send`
 
 ## Installation
 
@@ -31,10 +32,44 @@ $ bash install.sh
 
 or run separately parts of the install script
 
-- run notifier every time the user log in (do NOT run as `$ sudo`, works via `systemctl --user`)
+- run notifier every time when the user log in (do NOT run as `$ sudo`, works via `systemctl --user`)
 
 ```bash
 $ bash install_service.sh
+```
+
+## Configuration
+
+When is systemctl service installed is check script run immediately and also is run every time when user log in and after every BIOS version check are processed scripts which are located for futher customization here:
+
+- When is BIOS upgradable (`/usr/share/asus-bios-updates-notifier/bios_is_upgradable_script.sh`)(default content below)
+
+```
+#!/bin/bash
+
+notify-send "BIOS v$BIOS_VERSION is upgradable to v$BIOS_VERSION_LATEST ($BIOS_VERSION_LATEST_RELEASED_DATE)"
+```
+
+- When is BIOS up-to-date (`/usr/share/asus-bios-updates-notifier/bios_is_uptodate_script.sh`) (default content below)
+
+```
+#!/bin/bash
+
+notify-send "BIOS v$BIOS_VERSION ($BIOS_VERSION_LATEST_RELEASED_DATE) is up-to-date"
+```
+
+## Uninstallation
+
+To uninstall run
+
+```bash
+$ bash uninstall.sh
+```
+
+or run separately parts of the uninstall script
+
+```bash
+$ bash uninstall_service.sh
 ```
 
 ## Tests
