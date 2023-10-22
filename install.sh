@@ -37,6 +37,4 @@ LOGS_INSTALL_LOG_FILE_PATH="$LOGS_DIR_PATH/$LOGS_INSTALL_LOG_FILE_NAME"
 
     source install_service.sh
 
-    echo
-
 } 2>&1 | sudo tee "$LOGS_INSTALL_LOG_FILE_PATH"

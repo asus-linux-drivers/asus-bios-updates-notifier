@@ -3,6 +3,9 @@
 source non_sudo_check.sh
 
 # INHERIT VARS
+if [ -z "$INSTALL_DIR_PATH" ]; then
+    INSTALL_DIR_PATH="/usr/share/asus-bios-updates-notifier"
+fi
 if [ -z "$LOGS_DIR_PATH" ]; then
     LOGS_DIR_PATH="/var/log/asus-bios-updates-notifier"
 fi
@@ -19,11 +22,24 @@ case "$RESPONSE" in [yY][eE][sS]|[yY])
 
     ERROR_LOG_FILE_PATH="$LOGS_DIR_PATH/error.log"
 
+    BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH="$INSTALL_DIR_PATH/bios_is_upgradable_script.sh"
+    cat "bios_is_upgradable_script.sh" | sudo tee "$BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH" >/dev/null
+    sudo chmod +x $BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH
+
+    BIOS_IS_UPTODATE_SCRIPT_FILE_PATH="$INSTALL_DIR_PATH/bios_is_uptodate_script.sh"
+    cat "bios_is_uptodate_script.sh" | sudo tee "$BIOS_IS_UPTODATE_SCRIPT_FILE_PATH" >/dev/null
+    sudo chmod +x $BIOS_IS_UPTODATE_SCRIPT_FILE_PATH
+
+    echo
+    echo "UPGRADABLE SCRIPT: $BIOS_IS_UPTODATE_SCRIPT_FILE_PATH"
+    echo "UPTODATE SCRIPT: $BIOS_IS_UPTODATE_SCRIPT_FILE_PATH"
+    echo
+
     echo
     echo "ERROR LOG FILE: $ERROR_LOG_FILE_PATH"
     echo
 
-    cat "$SERVICE_FILE_PATH" | ERROR_LOG_FILE_PATH=$ERROR_LOG_FILE_PATH envsubst '$ERROR_LOG_FILE_PATH' | sudo tee "$SERVICE_INSTALL_DIR_PATH/$SERVICE_INSTALL_FILE_NAME" >/dev/null
+    cat "$SERVICE_FILE_PATH" | ERROR_LOG_FILE_PATH=$ERROR_LOG_FILE_PATH BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH=$BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH BIOS_IS_UPTODATE_SCRIPT_FILE_PATH=$BIOS_IS_UPTODATE_SCRIPT_FILE_PATH envsubst '$ERROR_LOG_FILE_PATH $BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH $BIOS_IS_UPTODATE_SCRIPT_FILE_PATH' | sudo tee "$SERVICE_INSTALL_DIR_PATH/$SERVICE_INSTALL_FILE_NAME" >/dev/null
 
     if [[ $? != 0 ]]; then
         echo "Something went wrong when moving the $SERVICE_FILE_PATH"
