@@ -8,6 +8,8 @@
 
 Script whether is current BIOS version up-to-date may be run separately or every laptop start via provided systemctl service.
 
+If you find this project useful, do not forget to give it a [![GitHub stars](https://img.shields.io/github/stars/asus-linux-drivers/asus-bios-updates-notifier.svg?style=social&label=Star&maxAge=2592000)](https://github.com/asus-linux-drivers/asus-bios-updates-notifier/stargazers) People already did!
+
 ## Features
 
 - Notifier is installed for current user and does not run under `$ sudo`
@@ -27,10 +29,16 @@ and install
 $ bash install.sh
 ```
 
-or run separately parts of install script
+or run separately parts of the install script
 
-- run notifier every time when user log in (do NOT run as `$ sudo`, works via `systemctl --user`)
+- run notifier every time the user log in (do NOT run as `$ sudo`, works via `systemctl --user`)
 
 ```bash
 $ bash install_service.sh
 ```
+
+## Existing similar projects
+
+I do not know any.
+
+**Why was this project created?** As a notifier about any released BIOS version.
