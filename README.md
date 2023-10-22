@@ -37,6 +37,14 @@ or run separately parts of the install script
 $ bash install_service.sh
 ```
 
+## Tests
+
+To run tests
+
+```bash
+$ bash tests/script.sh
+```
+
 ## Existing similar projects
 
 I do not know any.
