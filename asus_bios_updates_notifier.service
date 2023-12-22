@@ -7,8 +7,8 @@ After=NetworkManager-wait-online.service
 Type=simple
 StandardOutput=append:$ERROR_LOG_FILE_PATH
 StandardError=append:$ERROR_LOG_FILE_PATH
-ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 60; done;'
-ExecStart=/bin/bash /usr/share/asus-bios-updates-notifier/script.sh
+ExecStartPre=/usr/bin/env sh -c 'until ping -c1 google.com; do sleep 60; done;'
+ExecStart=/usr/bin/env bash /usr/share/asus-bios-updates-notifier/script.sh
 TimeoutSec=60
 Restart=on-failure
 Environment="BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH=$BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH"

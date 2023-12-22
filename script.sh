@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -z "$BIOS" ]; then
     BIOS=$(cat /sys/class/dmi/id/bios_version)
