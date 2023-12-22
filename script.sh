@@ -16,8 +16,10 @@ echo "Detected BIOS version: $BIOS_VERSION"
 USER_AGENT="user-agent-name-here"
 CURL_LAPTOP_LIST_URL="https://odinapi.asus.com/recent-data/apiv2/SearchResult?SystemCode=asus&WebsiteCode=global&SearchKey=$BIOS_PRODUCT_NAME&SearchType=products&PageSize=50&Pages=1&LocalFlag=0&siteID=www&sitelang="
 LAPTOP_LIST_CURL=$(curl -s --user-agent "$USER_AGENT" "$CURL_LAPTOP_LIST_URL" )
-LAPTOP_HELPDESK_BIOS=$(echo $LAPTOP_LIST_CURL | jq -r '.Result.List[].ProductURL' | tr '[:upper:]' '[:lower:]')
-LAPTOP_PD_WEB_PATH=$(echo $LAPTOP_LIST_CURL | jq -r '.Result.List[].PDWebPath' | tr '[:upper:]' '[:lower:]')
+
+# take only first product url (e.g. ROG Zephyrus G16 GU603ZI has multiple)
+LAPTOP_HELPDESK_BIOS=$(echo $LAPTOP_LIST_CURL | jq -r '[.Result.List[].ProductURL][0]' | tr '[:upper:]' '[:lower:]')
+LAPTOP_PD_WEB_PATH=$(echo $LAPTOP_LIST_CURL | jq -r '[.Result.List[].PDWebPath][0]' | tr '[:upper:]' '[:lower:]')
 
 # 2nd attempt - directly support page when odinapi does not return any product
 if [ -z "$LAPTOP_HELPDESK_BIOS" ]; then
