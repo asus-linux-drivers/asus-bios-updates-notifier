@@ -6,7 +6,8 @@ fi
 
 echo
 
-BIOS_PRODUCT_NAME=$(echo $BIOS | cut -d '.' -f 1)
+# last cut command for the situation when the command above returns: UN5401QAB_UN5401QA.308
+BIOS_PRODUCT_NAME=$(echo $BIOS | cut -d '.' -f 1 | cut -d '_' -f 1)
 BIOS_VERSION=$(echo $BIOS | cut -d '.' -f 2)
 
 echo "Detected laptop: $BIOS_PRODUCT_NAME"
