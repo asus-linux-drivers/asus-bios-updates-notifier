@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 (6.1.2024)
+
+### Fixed
+
+- Fixed the situation when a product has multiple variants (e.g. https://www.asus.com/supportonly/un5401qa/helpdesk_bios/)
+
 ## 1.0.1 (25.12.2023)
 
 ### Fixed
