@@ -4,8 +4,6 @@ if [ -z "$BIOS" ]; then
     BIOS=$(cat /sys/class/dmi/id/bios_version)
 fi
 
-echo
-
 # last cut command for the situation when the command above returns: UN5401QAB_UN5401QA.308
 BIOS_PRODUCT_NAME=$(echo $BIOS | cut -d '.' -f 1 | cut -d '_' -f 1)
 BIOS_VERSION=$(echo $BIOS | cut -d '.' -f 2)
@@ -25,7 +23,7 @@ BIOS_VERSION_LATEST_RELEASED_DATE=$(echo $LAPTOP_SUPPORT_PAGE_CURL | xmllint --h
 echo
 
 if [[ "$BIOS_VERSION_LATEST" != "$BIOS_VERSION" ]]; then
-    echo "BIOS is upgradable to $BIOS_VERSION_LATEST"
+    echo "BIOS is upgradable to: $BIOS_VERSION_LATEST"
     echo "Download link: $CURL_LAPTOP_SUPPORT_PAGE_URL"
 
     if [ "$BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH" ]; then
