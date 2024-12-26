@@ -1,0 +1,19 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "bashdb",
+      "request": "launch",
+      "name": "Bash-Debug (simplest configuration)",
+      "program": "${file}",
+      "env": {
+        "BIOS_IS_UPTODATE_SCRIPT_FILE_PATH":"/usr/share/asus-bios-updates-notifier/bios_is_uptodate_script.sh",
+        "BIOS_IS_UPGRADABLE_SCRIPT_FILE_PATH":"/usr/share/asus-bios-updates-notifier/bios_is_upgradable_script.sh",
+        "CONFIG_DIR_PATH": "/usr/share/asus-bios-updates-notifier/"
+      }
+    }
+  ]
+}

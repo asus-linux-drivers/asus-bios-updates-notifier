@@ -10,28 +10,28 @@ LOGS_UNINSTALL_LOG_FILE_PATH="$LOGS_DIR_PATH/$LOGS_UNINSTALL_LOG_FILE_NAME"
 touch "$LOGS_UNINSTALL_LOG_FILE_PATH"
 
 {
-    INSTALL_DIR_PATH="/usr/share/asus-bios-updates-notifier"
- 
-    sudo rm -rf $INSTALL_DIR_PATH
+  INSTALL_DIR_PATH="/usr/share/asus-bios-updates-notifier"
 
-    if [[ $? != 0 ]]
-	then
-	    echo "Something went wrong when removing files from the $INSTALL_DIR_PATH"
-	fi
+  sudo rm -rf $INSTALL_DIR_PATH
 
-	echo "Asus numberpad driver removed"
+  if [[ $? != 0 ]]
+  then
+    echo "Something went wrong when removing files from the $INSTALL_DIR_PATH"
+  fi
 
-	echo
+  echo "Asus numberpad driver removed"
 
-	source uninstall_service.sh
+  echo
 
-	echo
+  source uninstall_service.sh
 
-	echo "Uninstallation finished succesfully"
+  echo
 
-	echo
+  echo "Uninstallation finished succesfully"
 
-	read -r -p "Reboot is required. Do you want reboot now? [y/N]" RESPONSE
+  echo
+
+  read -r -p "Reboot is required. Do you want reboot now? [y/N]" RESPONSE
     case "$RESPONSE" in [yY][eE][sS]|[yY])
         reboot
         ;;
