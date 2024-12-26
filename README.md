@@ -10,7 +10,7 @@
 
 ![preview](preview.png)
 
-Included script checks whether is current version of ASUS laptop's BIOS up-to-date every time when the laptop starts via provided systemctl service. Service is designed to wait for connection, then execute check script and be stopped so consumes nothing.
+Included script checks every time when laptop starts whether is BIOS version of current ASUS laptop and each ASUS product defined manually in associated config up-to-date. Is used systemctl service.
 
 If you find this project useful, do not forget to give it a [![GitHub stars](https://img.shields.io/github/stars/asus-linux-drivers/asus-bios-updates-notifier.svg?style=social&label=Star&maxAge=2592000)](https://github.com/asus-linux-drivers/asus-bios-updates-notifier/stargazers) People already did!
 
@@ -22,6 +22,7 @@ If you find this project useful, do not forget to give it a [![GitHub stars](htt
 
 - Notifier is installed for current user and does not run under `$ sudo`
 - Customizable scripts which by default show notification bubbles via `$ notify-send`
+- Via config is possible check BIOS version of any Asus product
 
 ## Installation
 
@@ -48,22 +49,28 @@ $ bash install_service.sh
 
 ## Configuration
 
-When is systemctl service installed is check script run immediately and also is run every time when user log in and after every BIOS version check are processed scripts which are located for futher customization here:
+Config file with Asus products is located here `/usr/share/asus-bios-updates-notifier/config.ini`. BIOS of the current laptop is checked automatically and do not has to be added in config! (format below)
+
+```
+"RT-AX53U"="3.0.0.4.386_69086"
+```
+
+When is systemctl service installed check script is run immediately and also is run every time when user log in and after every BIOS version check are processed scripts that are located for futher customization here:
 
 - When is BIOS upgradable (`/usr/share/asus-bios-updates-notifier/bios_is_upgradable_script.sh`)(default content below)
 
 ```
-#!/bin/bash
+#!/usr/bin/env bash
 
-notify-send "BIOS v$BIOS_VERSION is upgradable to v$BIOS_VERSION_LATEST ($BIOS_VERSION_LATEST_RELEASED_DATE)"
+notify-send "BIOS v$BIOS_VERSION of product $BIOS_PRODUCT_NAME is upgradable to v$BIOS_VERSION_LATEST ($BIOS_VERSION_LATEST_RELEASED_DATE)"
 ```
 
 - When is BIOS up-to-date (`/usr/share/asus-bios-updates-notifier/bios_is_uptodate_script.sh`) (default content below)
 
 ```
-#!/bin/bash
+#!/usr/bin/env bash
 
-notify-send "BIOS v$BIOS_VERSION ($BIOS_VERSION_LATEST_RELEASED_DATE) is up-to-date"
+notify-send "BIOS v$BIOS_VERSION ($BIOS_VERSION_LATEST_RELEASED_DATE) of product $BIOS_PRODUCT_NAME is up-to-date"
 ```
 
 ## Uninstallation
@@ -92,4 +99,4 @@ $ bash tests/script.sh
 
 I do not know any.
 
-**Why was this project created?** As a notifier about any released BIOS version.
+**Why was this project created?** As a notifier about any released BIOS versions.

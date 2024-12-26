@@ -28,6 +28,38 @@ LOGS_INSTALL_LOG_FILE_PATH="$LOGS_DIR_PATH/$LOGS_INSTALL_LOG_FILE_NAME"
 
     INSTALL_DIR_PATH="/usr/share/asus-bios-updates-notifier"
 
+    echo
+    echo "Select config:"
+    echo
+    echo "Default one contains router RT-AX53U"
+    echo
+    PS3='Please enter your choice '
+    options=($(ls configs) "Quit")
+    select selected_opt in "${options[@]}"
+    do
+        if [ "$selected_opt" = "Quit" ]
+        then
+            exit 0
+        fi
+
+        for option in $(ls configs);
+        do
+            if [ "$option" = "$selected_opt" ] ; then
+                layout=${selected_opt%.py}
+                break
+            fi
+        done
+
+        if [ -z "$layout" ] ; then
+            echo "invalid option $REPLY"
+        else
+            break
+        fi
+    done
+
+    echo "Add config with possibility to check bios of another products: $INSTALL_DIR_PATH/config.ini"
+    cp configs/$layout "$INSTALL_DIR_PATH/config.ini"
+
     sudo mkdir -p "$INSTALL_DIR_PATH"
     sudo chown -R $USER "$INSTALL_DIR_PATH"
     sudo install script.sh "$INSTALL_DIR_PATH"
