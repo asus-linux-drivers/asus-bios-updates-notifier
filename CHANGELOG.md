@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 (29.12.2024)
+
+### Feature
+
+- Added possibility via config add other products to check BIOS versions
+
+### Fixed
+
+- Fixed url with required language
+
 ## 1.0.2 (6.1.2024)
 
 ### Fixed
