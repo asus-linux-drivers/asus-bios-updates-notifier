@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 (06.10.2025)
+
+### Fixed
+
+- Copying config to install dir path first installation
+
 ## 1.1.0 (29.12.2024)
 
 ### Feature

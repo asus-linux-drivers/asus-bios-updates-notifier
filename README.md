@@ -3,7 +3,7 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Maintainer](https://img.shields.io/badge/maintainer-ldrahnik-blue)
 [![GitHub Release](https://img.shields.io/github/release/asus-linux-drivers/asus-bios-updates-notifier.svg?style=flat)](https://github.com/asus-linux-drivers/asus-bios-updates-notifier/releases)
-[![GitHub commits](https://img.shields.io/github/commits-since/asus-linux-drivers/asus-bios-updates-notifier/v1.1.0.svg)](https://GitHub.com/asus-linux-drivers/asus-bios-updates-notifier/commit/)
+[![GitHub commits](https://img.shields.io/github/commits-since/asus-linux-drivers/asus-bios-updates-notifier/v1.1.1.svg)](https://GitHub.com/asus-linux-drivers/asus-bios-updates-notifier/commit/)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20about-anything-1abc9c.svg)](https://github.com/asus-linux-drivers/asus-bios-updates-notifier/issues/new/choose)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fasus-linux-drivers%2Fasus-bios-updates-notifier&label=Visitors&icon=suit-heart-fill&color=%23e35d6a)
