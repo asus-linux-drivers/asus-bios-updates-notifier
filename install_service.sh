@@ -74,6 +74,7 @@ case "$RESPONSE" in [yY][eE][sS]|[yY])
     fi
 
     systemctl restart --user asus_bios_updates_notifier@$USER.service
+
     if [[ $? != 0 ]]; then
         echo "Something went wrong when starting the asus_bios_updates_notifier@$USER.service"
         exit 1
