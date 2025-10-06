@@ -57,10 +57,11 @@ LOGS_INSTALL_LOG_FILE_PATH="$LOGS_DIR_PATH/$LOGS_INSTALL_LOG_FILE_NAME"
         fi
     done
 
+    mkdir -p "$INSTALL_DIR_PATH"
+
     echo "Add config with possibility to check bios of another products: $INSTALL_DIR_PATH/config.ini"
     cp configs/$layout "$INSTALL_DIR_PATH/config.ini"
 
-    sudo mkdir -p "$INSTALL_DIR_PATH"
     sudo chown -R $USER "$INSTALL_DIR_PATH"
     sudo install script.sh "$INSTALL_DIR_PATH"
     sudo chmod +x "$INSTALL_DIR_PATH/script.sh"
